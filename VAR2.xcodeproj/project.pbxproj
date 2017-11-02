@@ -11,6 +11,7 @@
 		29B47C3B1FAB345500B98169 /* DisplaySurface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 29B47C391FAB345500B98169 /* DisplaySurface.cpp */; };
 		29B47C3E1FAB34A600B98169 /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 29B47C3C1FAB34A600B98169 /* Point.cpp */; };
 		29B47C411FAB35A400B98169 /* Vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 29B47C3F1FAB35A400B98169 /* Vector.cpp */; };
+		29B47C441FAB423100B98169 /* Matrix4x4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 29B47C421FAB423100B98169 /* Matrix4x4.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +35,8 @@
 		29B47C3D1FAB34A600B98169 /* Point.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Point.hpp; sourceTree = "<group>"; };
 		29B47C3F1FAB35A400B98169 /* Vector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vector.cpp; sourceTree = "<group>"; };
 		29B47C401FAB35A400B98169 /* Vector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vector.hpp; sourceTree = "<group>"; };
+		29B47C421FAB423100B98169 /* Matrix4x4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix4x4.cpp; sourceTree = "<group>"; };
+		29B47C431FAB423100B98169 /* Matrix4x4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Matrix4x4.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +70,8 @@
 			isa = PBXGroup;
 			children = (
 				298C8B271FA2032500161737 /* main.cpp */,
+				29B47C421FAB423100B98169 /* Matrix4x4.cpp */,
+				29B47C431FAB423100B98169 /* Matrix4x4.hpp */,
 				29B47C391FAB345500B98169 /* DisplaySurface.cpp */,
 				29B47C3A1FAB345500B98169 /* DisplaySurface.hpp */,
 				29B47C3F1FAB35A400B98169 /* Vector.cpp */,
@@ -134,6 +139,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29B47C441FAB423100B98169 /* Matrix4x4.cpp in Sources */,
 				29B47C3E1FAB34A600B98169 /* Point.cpp in Sources */,
 				29B47C3B1FAB345500B98169 /* DisplaySurface.cpp in Sources */,
 				29B47C411FAB35A400B98169 /* Vector.cpp in Sources */,

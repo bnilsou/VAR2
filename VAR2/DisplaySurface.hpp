@@ -27,6 +27,8 @@ public:
     
     inline Vector v() { return m_v; };
     
+    Vector normal();
+    
 private:
     Point m_origin;
     Vector m_u;

@@ -10,3 +10,10 @@
 
 DisplaySurface::DisplaySurface(const Point& orig, const Vector& uvector, const Vector& vvector) : m_origin(orig), m_u(uvector), m_v(vvector)
 {}
+
+Vector DisplaySurface::normal()
+{
+    Vector v(m_u.dy() * m_v.dz() - m_u.dz() * m_v.dy(), m_u.dz() * m_v.dx() - m_u.dx() * m_v.dz(), m_u.dx() * m_v.dy() - m_u.dy() * m_v.dx() );
+    v.normalize();
+    return v;
+}
