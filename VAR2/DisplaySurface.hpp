@@ -21,6 +21,12 @@ public:
     
     DisplaySurface(const Point& orig, const Vector& uvector, const Vector& vvector);
     
+    inline Point origin() { return m_origin; };
+    
+    inline Vector u() { return m_u; };
+    
+    inline Vector v() { return m_v; };
+    
 private:
     Point m_origin;
     Vector m_u;
