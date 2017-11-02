@@ -43,8 +43,14 @@ Matrix4x4 viewingMatrix(DisplaySurface display, Point eye)
     return matrix;
 }
 
+Matrix4x4 projectionMatrix(DisplaySurface display, Point eye, float znear, float zfar)
+{
+    Matrix4x4 matrix;
+    
+    return matrix;
+}
+
 int main(int argc, const char * argv[]) {
-    std::cout << "Hello, VAR2 !\n";
     
     DisplaySurface front(Point(-150, -150, -150), Vector(300, 0, 0), Vector(0, 300, 0));
     DisplaySurface left(Point(-150, -150, 150), Vector(0, 0, -300), Vector(0, 300, 0));
@@ -53,15 +59,19 @@ int main(int argc, const char * argv[]) {
 
     
     Matrix4x4 mFront = viewingMatrix(front, Point(50, 20, 100));
+    printf("viewingMatrix(front, Point(50, 20, 100) = \n");
     mFront.print();
     
     Matrix4x4 mLeft = viewingMatrix(left, Point(50, 20, 100));
+    printf("viewingMatrix(left, Point(50, 20, 100) = \n");
     mLeft.print();
     
     Matrix4x4 mRight = viewingMatrix(right, Point(50, 20, 100));
+    printf("viewingMatrix(right, Point(50, 20, 100) = \n");
     mRight.print();
     
     Matrix4x4 mFloor = viewingMatrix(floor, Point(50, 20, 100));
+    printf("viewingMatrix(floor, Point(50, 20, 100) = \n");
     mFloor.print();
     
     return 0;
