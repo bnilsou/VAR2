@@ -33,6 +33,8 @@ public:
     float scalar(Vector& v);
     float scalar(Point& v);
     
+    float norm();
+    
     void print();
     
 private:

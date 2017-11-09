@@ -56,10 +56,10 @@ Matrix4x4 projectionMatrix(DisplaySurface display, Point eye, float znear, float
     v.normalize();
     Vector normal = Vector(display.normal());
     
-    l=-n*(150+u.scalar(eye))/(150+normal.scalar(eye));
-    r=n*(150-u.scalar(eye))/(150+normal.scalar(eye));
-    t=-n*(150+v.scalar(eye))/(150+normal.scalar(eye));
-    b=n*(150-v.scalar(eye))/(150+normal.scalar(eye));
+    l=-n*(display.u().norm()/2+u.scalar(eye))/(display.v().norm()/2+normal.scalar(eye));
+    r=n*(display.u().norm()/2-u.scalar(eye))/(display.v().norm()/2+normal.scalar(eye));
+    t=-n*(display.u().norm()/2+v.scalar(eye))/(display.v().norm()/2+normal.scalar(eye));
+    b=n*(display.u().norm()/2-v.scalar(eye))/(display.v().norm()/2+normal.scalar(eye));
     
     
     printf("%f, %f, %f, %f, %f, %f\n\n", l, r, t, b, n, f);

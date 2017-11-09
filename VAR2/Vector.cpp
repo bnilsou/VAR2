@@ -18,7 +18,7 @@ Vector::Vector(const Vector& v) : m_dx(v.m_dx), m_dy(v.m_dy), m_dz(v.m_dz)
 
 void Vector::normalize()
 {
-    float norm = std::sqrt(m_dx*m_dx + m_dy * m_dy + m_dz * m_dz);
+    float norm = this->norm();
     m_dx /= norm;
     m_dy /= norm;
     m_dz /= norm;
@@ -32,6 +32,11 @@ float Vector::scalar(Vector& v)
 float Vector::scalar(Point& p)
 {
     return m_dx * p.x() + m_dy * p.y() + m_dz * p.z();
+}
+
+float Vector::norm()
+{
+    return std::sqrt(m_dx*m_dx + m_dy * m_dy + m_dz * m_dz);
 }
 
 void Vector::print()
