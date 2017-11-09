@@ -36,6 +36,8 @@ DisplaySurface.prototype.viewingMatrix = function(eye) {
   mat._[14] = 0;
   mat._[15] = 1;
 
+  mat.transpose();
+
   return mat;
 };
 

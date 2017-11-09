@@ -113,10 +113,7 @@ var CAVE = {
 
 	drawSceneOntoTexture : function(displaySurface, fboName){
     GLV.TextureManager.bindFBO(fboName);
-    // GLV.scene.draw(GLV.camera.mvMat.copy(), GLV.camera.pMat.copy());
-		GLV.scene.draw(displaySurface.viewingMatrix(this.objects[0].pos), GLV.camera.pMat.copy());
-    console.log(displaySurface.viewingMatrix(this.objects[0].pos));
-		// GLV.scene.draw(displaySurface.viewingMatrix(this.objects[0].pos), displaySurface.projectionMatrix(this.objects[0].pos,this.near,this.far));
+		GLV.scene.draw(displaySurface.viewingMatrix(this.objects[0].pos), displaySurface.projectionMatrix(this.objects[0].pos,this.near,this.far));
 		gl.bindFramebuffer(gl.FRAMEBUFFER, null);
 	},
 
