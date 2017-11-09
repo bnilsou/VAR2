@@ -3,27 +3,27 @@
 var CAVE = {
 
     // Variables
-    
+
     leftEye : new Vec3(-3.0, 20.0, 50.0),
     rightEye : new Vec3(3.0, 20.0, 50.0),
     near : 1.0,
     far : 10000.0,
     TEX_SIZE : 1024,
-    
+
     front : new DisplaySurface(new Vec3(-150.0, -150.0, -150.0), new Vec3(300.0, 0.0,   0.0), new Vec3(0.0, 300.0,   0.0)),
     left : new DisplaySurface(new Vec3(-150.0, -150.0, 150.0), new Vec3(0.0, 0.0,  -300.0), new Vec3(0.0, 300.0,   0.0)),
     right : new DisplaySurface(new Vec3(150.0, -150.0, -150.0), new Vec3(0.0, 0.0, 300.0), new Vec3(0.0, 300.0,   0.0)),
     floor : new DisplaySurface(new Vec3(-150.0, -150.0, 150.0), new Vec3(300.0, 0.0,   0.0), new Vec3(0.0, 0.0,  -300.0)),
 
 
-    
+
     // Functions
-    
+
     init : function(){
         // Init the display surface 3D objects
         var objs = [
             // [MODEL_NAME, POSITION = [X, Y, Z], SCALE = [X, Y, Z], ROTATION = [theta_deg, phi_deg]]
-            [ "EyeL", [this.leftEye.x, this.leftEye.y, this.leftEye.z], [2.0, 2.0, 2.0] ], // Left eye
+            [ "EyeL", [this.leftEye.x, this.leftEye.y, this.leftEye.z], [-2.0, 2.0, 2.0] ], // Left eye
             [ "EyeR", [this.rightEye.x, this.rightEye.y, this.rightEye.z], [2.0, 2.0, 2.0] ], // Right eye﻿
             [ "Plane", [   0.0,    0.0, -150.0], [300.0, 300.0, 1.0] ], // Front plane
             [ "Plane", [   -150.0,    0.0, 0.0], [300.0, 300.0, 1.0], [90.0,0.0] ], // Left plane
@@ -41,7 +41,7 @@ var CAVE = {
                 this.objects[i].phi = objData[3][1];
             }
         }
-        
+
         // Init textures for each display surface
         GLV.TextureManager.createTexture("front", this.TEX_SIZE, this.TEX_SIZE, true);
         GLV.TextureManager.createTexture("left", this.TEX_SIZE, this.TEX_SIZE, true);
@@ -70,7 +70,7 @@ var CAVE = {
             ]
         ];
         GLV.Input.addCallbacks(callbacks);
-        
+
         // Scale scene callbacks
         GLV.Input.scrollPositiveCallbacks.push(
             function(){
@@ -82,7 +82,7 @@ var CAVE = {
                 if (GLV.uiSelectedMoveMode === GLV.MOVEMODE_SCENE) GLV.scene.incrScale(new Vec3(-0.1, -0.1, -0.1));
             }
         );
-        
+
         // Change interocular distance callbacks
         GLV.Input.scrollPositiveCallbacks.push(
             function(){
@@ -95,14 +95,14 @@ var CAVE = {
             }
         );
     },
-    
+
     moveEyes : function(v){
         this.leftEye.add(v);
         this.rightEye.add(v);
         this.objects[0].pos.add(v);
         this.objects[1].pos.add(v);
     },
-    
+
     increaseEyeSeparation : function(dist){
         if (this.leftEye.x - dist/2 > this.rightEye.x + dist/2) dist = this.leftEye.x - this.rightEye.x;
         this.leftEye.x -= dist/2;
@@ -110,18 +110,18 @@ var CAVE = {
         this.objects[0].pos.x -= dist/2;
         this.objects[1].pos.x += dist/2;
     },
-	
+
 	drawSceneOntoTexture : function(displaySurface, fboName){
-		
+
 		GLV.TextureManager.bindFBO(fboName);
 		GLV.scene.draw(GLV.camera.mvMat.copy(), GLV.camera.pMat.copy());
 		gl.bindFramebuffer(gl.FRAMEBUFFER, null);
 	},
-    
+
     draw : function(){
         // Adjust the viewport to the textures
         gl.viewport(0, 0, this.TEX_SIZE, this.TEX_SIZE);
-        
+
         // For each DisplaySurface, draw scene onto a texture
         this.drawSceneOntoTexture(this.front, "front");
         this.drawSceneOntoTexture(this.left, "left");
@@ -130,7 +130,7 @@ var CAVE = {
 
         // Restore the gl context
         gl.viewport(0, 0, GLV.canvas.width, GLV.canvas.height);
-        
+
         // Draw the regular scene
         GLV.scene.draw(GLV.camera.mvMat.copy(), GLV.camera.pMat.copy());
 
@@ -139,22 +139,20 @@ var CAVE = {
         this.objects[0].draw(GLV.camera.mvMat, GLV.camera.pMat);
         this.objects[1].draw(GLV.camera.mvMat, GLV.camera.pMat);
 
-        // Draw the texture-mapped DisplaySurfaces 
+        // Draw the texture-mapped DisplaySurfaces
         GLV.ShaderManager.setActiveShader(GLV.ShaderManager.CAVE_DISPLAY_SURFACE);
         var shaderProg = GLV.ShaderManager.getActiveShader();
         // Set lighting uniforms
         GLV.scene.light.setUniforms(shaderProg, GLV.camera.mvMat.copy());
         // Set DisplaySurfaces textures
         GLV.TextureManager.setUniformTexArray(["front", "left", "right", "floor"], shaderProg, "textures");
-        
+
         gl.uniform1i(gl.getUniformLocation(shaderProg, "texIdx"), 0);
         this.objects[2].draw(GLV.camera.mvMat, GLV.camera.pMat);
         this.objects[3].draw(GLV.camera.mvMat, GLV.camera.pMat);
         this.objects[4].draw(GLV.camera.mvMat, GLV.camera.pMat);
         this.objects[5].draw(GLV.camera.mvMat, GLV.camera.pMat);
 
-        
+
     }
 };
-
-     
