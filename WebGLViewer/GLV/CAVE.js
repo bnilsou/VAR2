@@ -113,8 +113,12 @@ var CAVE = {
 
 	drawSceneOntoTexture : function(displaySurface, fboName){
     GLV.TextureManager.bindFBO(fboName);
+    gl.colorMask(1,0,0,1);
 		GLV.scene.draw(displaySurface.viewingMatrix(this.objects[0].pos), displaySurface.projectionMatrix(this.objects[0].pos,this.near,this.far));
+    gl.colorMask(0,0,1,1);
+    GLV.scene.draw(displaySurface.viewingMatrix(this.objects[1].pos), displaySurface.projectionMatrix(this.objects[1].pos,this.near,this.far));
 		gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+    gl.colorMask(1,1,1,1);
 	},
 
     draw : function(){
@@ -148,8 +152,11 @@ var CAVE = {
 
         gl.uniform1i(gl.getUniformLocation(shaderProg, "texIdx"), 0);
         this.objects[2].draw(GLV.camera.mvMat, GLV.camera.pMat);
+        gl.uniform1i(gl.getUniformLocation(shaderProg, "texIdx"), 1);
         this.objects[3].draw(GLV.camera.mvMat, GLV.camera.pMat);
+        gl.uniform1i(gl.getUniformLocation(shaderProg, "texIdx"), 2);
         this.objects[4].draw(GLV.camera.mvMat, GLV.camera.pMat);
+        gl.uniform1i(gl.getUniformLocation(shaderProg, "texIdx"), 3);
         this.objects[5].draw(GLV.camera.mvMat, GLV.camera.pMat);
 
 

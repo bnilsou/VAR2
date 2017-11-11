@@ -60,7 +60,9 @@ DisplaySurface.prototype.projectionMatrix = function(eye, znear, zfar){
   b=n*(150-Vec3.dot(newV, eye))/(150+Vec3.dot(normal, eye));
 
   mat.frustum(l,r,t,b,n,f);
-  mat.transpose();
 
   return mat;
+
+
+
 };

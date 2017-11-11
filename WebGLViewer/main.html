@@ -28,9 +28,9 @@
         <script type="text/javascript" src="GLV/shaders/light.js"></script>
         <script type="text/javascript" src="GLV/shaders/cave.js"></script>
     </head>
-    
+
     <body class="text" onload='GLV.webGLStart()'>
-        
+
         <div id="helpBox">
             <button type="button" class="button text" id="buttonCloseHelp" onclick="GLV.uiToggleHelp()">X</button>
             <b>Camera:</b> the "Camera" movement must be selected. <br>
@@ -53,17 +53,17 @@
             dragging and dropping the ".obj" and the ".mtl" (if exists) <br>
             at the same time over the "Drag & drop" box.
         </div>
-        
+
         <div id="left">
             <!-- WEBGL canvas -->
             <canvas id='mainCanvas'></canvas>
             <div id='TextFPS'> 0 fps </div>
         </div>
-        
+
         <div id="right">
             <button type="button" class="button text" id="buttonHelp" onclick="GLV.uiToggleHelp()">Help</button>
             <div id="boxMovement"> &nbsp<b>Movement: </b>
-                <div id="rbGroupMovement"> <form action=""> 
+                <div id="rbGroupMovement"> <form action="">
                     <input type="radio" class="radioB" name="moveRB" onclick="GLV.uiSelectedMoveModeChanged(GLV.MOVEMODE_CAMERA)" checked="">Camera<br>
                     <input type="radio" class="radioB" name="moveRB" onclick="GLV.uiSelectedMoveModeChanged(GLV.MOVEMODE_SCENE)">Scene<br>
                     <input type="radio" class="radioB" name="moveRB" onclick="GLV.uiSelectedMoveModeChanged(GLV.MOVEMODE_EYES)">Eyes
@@ -76,12 +76,12 @@
                     <button type="button" class="button2 text" onclick="GLV.placeCameraAt(CAVE.rightEye)"></button> Right eye
                 </div>
             </div>
-            
+
             <!-- Load objects elements -->
             <div id="dropObjZone"> <center>Drop .obj and <br>.mtl files here.</center> </div>
             <output id="list"></output>
         </div>
-    
+
     </body>
 
 </html>
